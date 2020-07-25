@@ -1,7 +1,7 @@
 {
   "name": "WhatsApp Notification Changer",
   "version": "1.0",
-  "description": "A simple chrome extension that changes the notification sound of web.whatsapp.com",
+  "description": "A simple extension that allows the user to change the notification sound of web.whatsapp.com.",
   "permissions": [
     "activeTab", 
     "declarativeContent", 
