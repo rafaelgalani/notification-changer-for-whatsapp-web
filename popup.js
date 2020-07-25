@@ -2,7 +2,7 @@ var $ = document.querySelector.bind(document);
 var isAudioSetted = false;
 var isAudioUnchanged = true;
 var previousSound = void 0;
-var _ = () => (true);
+var _ = () => setMessage('Changes saved. Refresh the page.');
 
 chrome.storage.local.get('custom_notification_sound_dataURI', function(result){
 	if (result && result['custom_notification_sound_dataURI']){
@@ -28,7 +28,6 @@ $('#save').onclick = function(){
 			setWarning('No effect. Please upload a different file.');
 		} else {
 			chrome.storage.local.set({"custom_notification_sound_dataURI": $('#audio').src}, _);
-			setMessage('Changes saved. Refresh the page.');
 		} 
 	} else {
 		setError('Please select a file.');
@@ -50,7 +49,7 @@ setWarning = (text) => {
 	$('#message').className = 'warning-message';
 }
 
-clearMessage = (text) => {
+clearMessage = () => {
 	$('#message').textContent = ''
 	$('#message').className = '';
 }
