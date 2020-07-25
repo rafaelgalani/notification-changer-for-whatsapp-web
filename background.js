@@ -4,14 +4,19 @@
 
 'use strict';
 
+const TARGET_HEADER_NAME = 'content-security-policy'; 
+const REGEX_POLICY_REPLACE = /media\-src.*?(?=;|$)/g; //matches the whole 'media-src' part of the CSP response header.
+const NEW_POLICY = '$& data:'; //adding " data:" to the WhatsApp policy in order to load local files.
+
 chrome.webRequest.onHeadersReceived.addListener(function(details) {
-  console.log(details.responseHeaders);
-  details.responseHeaders.push({
-      name: "Test",
-      value: "Test"
-  });
-  return { responseHeaders: details.responseHeaders };
+	let targetHeader = details.responseHeaders.find(header => header.name.toLowerCase() == TARGET_HEADER_NAME);
+	
+	if (targetHeader){
+		targetHeader.value = targetHeader.value.replace(REGEX_POLICY_REPLACE, `$& data:`)
+	}
+	
+	return { responseHeaders: details.responseHeaders };
 }, 
-  {urls: ['*://web.whatsapp.com/']}, 
-  ["responseHeaders"]
-);
+{
+	urls: ['*://web.whatsapp.com/*']
+}, ["responseHeaders", 'blocking']);
