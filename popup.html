@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="resources/bootstrap.min.css"/>
+    <link rel="stylesheet" href="resources/style.css"/>
   </head>
   <body>
-    <input type="file" id="whatsapp-audio-file" class="input" accept="audio/*,video/*"/>
-    <audio controls="true" id="audio" src="" controlsList="nodownload"></audio>
-    <button id="save">Save file</button>
+    <input type="file" id="audio-file-input" class="btn btn-secondary" accept="audio/*,video/*"/>
+    <input type="button" id="upload-button" class="btn btn-secondary" value="Upload your file" />
+    <div class="preview-wrapper">
+      <label>Preview</label>
+      <audio controls="true" id="audio" src="" controlsList="nodownload"></audio>
+    </div>
+    <div class="footer">
+      <button id="save" class="btn btn-primary">Save</button>
+      <span id="message"></button>
+    </div>
   </body>
   <script src="popup.js"></script>
 </html>

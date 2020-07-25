@@ -1,0 +1,27 @@
+body {
+    padding: 15px
+}
+.preview-wrapper {
+    margin: 20px 0;
+}
+#audio-file-input{
+    display: none
+}
+audio#audio:focus {
+    outline: none;
+}
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+span#message {
+    font-size: 0.75em;
+    color: var(--blue);
+}
+.warning-message{
+    color: var(--warning)!important;
+}
+.error-message{
+    color: var(--danger)!important;
+}
