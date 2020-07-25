@@ -20,3 +20,16 @@ chrome.webRequest.onHeadersReceived.addListener(function(details) {
 {
 	urls: ['*://web.whatsapp.com/*']
 }, ["responseHeaders", 'blocking']);
+
+const WHATSAPP_PAGE_MATCHER = new chrome.declarativeContent.PageStateMatcher({
+	pageUrl: {hostEquals: 'web.whatsapp.com'},
+});
+
+chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+	chrome.declarativeContent.onPageChanged.addRules([
+		{
+			conditions: [WHATSAPP_PAGE_MATCHER],
+			actions: [new chrome.declarativeContent.ShowPageAction()]
+		}
+	]);
+});

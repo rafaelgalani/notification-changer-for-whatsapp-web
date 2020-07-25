@@ -1,21 +1,18 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+var $ = document.querySelector.bind(document);
+var isAudioSetted = false;
+var _ = () => (true);
 
-'use strict';
-
-let changeColor = document.getElementById('changeColor');
-
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
+$('#whatsapp-audio-file').addEventListener('change', function() { 
+	var fileReader = new FileReader(); 
+	fileReader.onload = function(){ 
+		$('#audio').src = fileReader.result;
+		isAudioSetted = true;
+	}
+	fileReader.readAsDataURL(this.files[0]); 
 });
 
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
-  });
-};
+$('#save').onclick = function(){
+	if (isAudioSetted){
+		chrome.storage.local.set({"custom_notification_sound_dataURI": $('#audio').src}, _);
+	}
+}

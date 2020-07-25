@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-      }
-    </style>
   </head>
   <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
+    <input type="file" id="whatsapp-audio-file" class="input" accept="audio/*,video/*"/>
+    <audio controls="true" id="audio" src="" controlsList="nodownload"></audio>
+    <button id="save">Save file</button>
   </body>
+  <script src="popup.js"></script>
 </html>
