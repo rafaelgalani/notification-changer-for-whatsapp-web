@@ -23,6 +23,13 @@
       "128": "images/get_started128.png"
     }
   },
+  "content_scripts": [{
+    "js": ["content-script.js"],
+    "matches": ["*://web.whatsapp.com/*"]
+  }],
+  "web_accessible_resources": [
+    "modifier.js"
+  ],
   "icons": {
     "16": "images/get_started16.png",
     "32": "images/get_started32.png",
