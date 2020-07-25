@@ -4,6 +4,7 @@
   "description": "A simple extension that allows the user to change the notification sound of web.whatsapp.com.",
   "permissions": [
     "activeTab", 
+    "unlimitedStorage",
     "declarativeContent", 
     "storage", 
     "webRequest", 
