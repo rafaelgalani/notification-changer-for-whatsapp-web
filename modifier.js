@@ -5,8 +5,6 @@
 
 	window.Audio.prototype.play = function(){
 		if (this.src.startsWith(WHATSAPP_NOTIFICATION_URL)){
-			console.log('It works!');
-			console.log(self);
 			this.src = localStorage.getItem('custom_notification_sound_dataURI');
 		};
 		audioDefaultPlay.apply(this)
