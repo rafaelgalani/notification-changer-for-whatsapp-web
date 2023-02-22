@@ -6,6 +6,7 @@
 	window.Audio.prototype.play = function(){
 		if (this.src.startsWith(WHATSAPP_NOTIFICATION_URL)){
 			this.src = localStorage.getItem('custom_notification_sound_dataURI');
+			this.volume = localStorage.getItem("custom_notification_sound_volume") || 1;
 		};
 		audioDefaultPlay.apply(this)
 	}

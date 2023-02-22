@@ -22,12 +22,19 @@ $('#audio-file-input').addEventListener('change', function() {
 	fileReader.readAsDataURL(this.files[0]); 
 })
 
+$('#audio').addEventListener('volumechange', function() {
+	$("#current-volume").textContent = +($('#audio').volume * 100).toFixed(1);
+});
+
 $('#save').onclick = function(){
 	if (isAudioSetted){
 		if (isAudioUnchanged){
 			setWarning('No effect. Please upload a different file.');
 		} else {
-			chrome.storage.local.set({"custom_notification_sound_dataURI": $('#audio').src}, _);
+			chrome.storage.local.set({
+				"custom_notification_sound_dataURI": $('#audio').src,
+				"custom_notification_sound_volume": $('#audio').volume,
+			}, _);
 		} 
 	} else {
 		setError('Please select a file.');
